@@ -7,15 +7,15 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-    <title>index</title>
+    <title>Login</title>
 </h:head>
 
 <h:body>
 
-    <h:outputLabel value="Hello, world"/> <br/>
-
     <h:form>
-        <h:commandButton value="init" action="#{navigator.init}"/>
+        username: <h:inputText value="#{user.username}"/> <br/>
+        password: <h:inputSecret value="#{user.password}"/> <br/>
+        <h:commandButton value="login" action="#{user.login}"/>
     </h:form>
 
 </h:body>
