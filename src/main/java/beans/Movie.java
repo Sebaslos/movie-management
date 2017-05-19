@@ -1,8 +1,11 @@
 package beans;
 
 
+import service.MovieService;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.event.ValueChangeEvent;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,7 +27,7 @@ public class Movie implements Serializable {
 	@Column(nullable = false)
 	private String director;
 
-	@OneToMany
+	@ManyToMany
 	private List<Player> players = new ArrayList<>();
 
 	@Column(nullable = false)
@@ -32,6 +35,12 @@ public class Movie implements Serializable {
 
 	@Column(nullable = false)
 	private String genre;
+
+	@Transient
+	private String search;
+
+	@Transient
+	private List<Movie> searchResult;
 
 	public String addMovie() {
 		System.out.println("add movie succeed");
@@ -42,6 +51,12 @@ public class Movie implements Serializable {
 		Player player = new Player();
 		player.setName(playername);
 		addPlayer(player);
+	}
+
+	public void searchFromMovieDB(ValueChangeEvent evt) {
+		this.search = (String) evt.getNewValue();
+		MovieService movieService = new MovieService();
+		this.searchResult = movieService.searchMovie(this.search);
 	}
 
 	public Long getId() {
@@ -94,5 +109,21 @@ public class Movie implements Serializable {
 
 	public void setGenre(String genre) {
 		this.genre = genre;
+	}
+
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
+	public List<Movie> getSearchResult() {
+		return searchResult;
+	}
+
+	public void setSearchResult(List<Movie> searchResult) {
+		this.searchResult = searchResult;
 	}
 }
