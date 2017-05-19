@@ -8,6 +8,7 @@
 
 <h:head>
     <title>add new movie</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css"/>
 </h:head>
 
 <h:body>
@@ -17,26 +18,29 @@
         title: <h:inputText value="#{movie.title}"/> <br/>
         director: <h:inputText value="#{movie.director}"/> <br/>
         <!--players: <h:inputText /> <br/>-->
-        year: <h:inputText value="#{movie.year}" /> <br/>
+        year: <h:inputText value="#{movie.year}"/> <br/>
         genre: <h:inputText value="#{movie.genre}"/> <br/>
 
-        <h:form>
         players:
-        <ul>
-            <ui:repeat value="#{movie.players}" var="player">
-                <li><h:outputText id="pname" value="#{player.name}"/></li>
+        <h:panelGroup id="pname">
+            <ui:repeat value="#{movie.players}" var="pl">
+                <li><h:outputText value="#{pl.name}"/></li>
             </ui:repeat>
-        </ul> <br/>
+            <br/>
 
-            add player: <h:inputText value="#{player.name}"/>
-            <h:commandButton value="add">
-                <f:ajax execute="" render="pname"/>
+            add player: <h:inputText id="pn" value="#{player.name}"/>
+            <h:commandButton value="add player" action="#{movie.addPlayer(player.name)}">
+                <f:ajax execute="pn" render="pname"/>
             </h:commandButton>
-        </h:form>
+        </h:panelGroup>
         <br/>
         <h:commandButton value="add" action="#{movie.addMovie}"/>
     </h:form>
 
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"/>
+    <script type="text/javascript" src="../js/app.js"/>
 </h:body>
 
 

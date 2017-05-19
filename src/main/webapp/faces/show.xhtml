@@ -14,6 +14,15 @@
 <h:body>
     <h2>Hallo, #{user.username}</h2>
 
+        title: <h:outputText value="#{movie.title}"/>
+        director: <h:outputText value="#{movie.director}"/> <br/>
+        year: <h:outputText value="#{movie.year}"/> <br/>
+        genre: <h:outputText value="#{movie.genre}"/> <br/>
+
+        <ui:repeat value="#{movie.players}" var="p">
+            <h:outputText value="#{p.name}"/>
+        </ui:repeat>
+
     <h:form>
         <h:commandButton value="add new movie" action="add"/>
     </h:form>

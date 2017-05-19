@@ -1,10 +1,15 @@
 package beans;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table
-public class Player {
+@ManagedBean(name = "player")
+@SessionScoped
+public class Player implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

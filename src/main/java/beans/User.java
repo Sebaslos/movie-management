@@ -33,13 +33,13 @@ public class User implements Serializable {
 //	private String message;
 
 	public String login() {
-		UserService service = new UserService();
-		try {
-			User user = service.authenticate(this.username, this.password);
-		} catch (Exception e) {
-			System.out.println("login error");
-			return "error";
-		}
+//		UserService service = new UserService();
+//		try {
+//			User user = service.authenticate(this.username, this.password);
+//		} catch (Exception e) {
+//			System.out.println("login error");
+//			return "error";
+//		}
 		return "show";
 	}
 

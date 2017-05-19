@@ -38,6 +38,12 @@ public class Movie implements Serializable {
 		return "show";
 	}
 
+	public void addPlayer(String playername) {
+		Player player = new Player();
+		player.setName(playername);
+		addPlayer(player);
+	}
+
 	public Long getId() {
 		return id;
 	}
