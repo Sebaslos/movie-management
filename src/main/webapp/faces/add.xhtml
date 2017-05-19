@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>add new movie</title>
+</h:head>
+
+<h:body>
+    <h2>Add a new movie</h2>
+
+    <h:form>
+        title: <h:inputText value="#{movie.title}"/> <br/>
+        director: <h:inputText value="#{movie.director}"/> <br/>
+        <!--players: <h:inputText /> <br/>-->
+        year: <h:inputText value="#{movie.year}" /> <br/>
+        genre: <h:inputText value="#{movie.genre}"/> <br/>
+
+        <h:form>
+        players:
+        <ul>
+            <ui:repeat value="#{movie.players}" var="player">
+                <li><h:outputText id="pname" value="#{player.name}"/></li>
+            </ui:repeat>
+        </ul> <br/>
+
+            add player: <h:inputText value="#{player.name}"/>
+            <h:commandButton value="add">
+                <f:ajax execute="" render="pname"/>
+            </h:commandButton>
+        </h:form>
+        <br/>
+        <h:commandButton value="add" action="#{movie.addMovie}"/>
+    </h:form>
+
+</h:body>
+
+
+</html>

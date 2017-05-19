@@ -33,6 +33,11 @@ public class Movie implements Serializable {
 	@Column(nullable = false)
 	private String genre;
 
+	public String addMovie() {
+		System.out.println("add movie succeed");
+		return "show";
+	}
+
 	public Long getId() {
 		return id;
 	}
