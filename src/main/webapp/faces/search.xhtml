@@ -8,6 +8,7 @@
 
 <h:head>
     <title>search new movie</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css"/>
 </h:head>
 
@@ -19,37 +20,36 @@
             <div class="input-field col s12">
                 Filter
                 <!--<h:inputText type="text" name="name" class="validate" autocomplete="off" onkeyup="search(this)"/>-->
-                <h:inputText value="#{movie.search}" onchange="submit" valueChangeListener="#{movie.searchFromMovieDB}"/>
+                <h:inputText value="#{movie.search}" onchange="submit"
+                             valueChangeListener="#{movie.searchFromMovieDB}"/>
             </div>
 
             <ul class="collection" id="movie" style="height: 250px; overflow:scroll;">
+                <li class="collection-item">
+                    <a style="background-color: #f5f5f5" id="tess" href="">rest</a>
+                    <a id="aic" class="secondary-content"><i id="te" class="material-icons">grade</i></a>
+                </li>
                 <ui:repeat value="#{movie.searchResult}" var="movie">
-                    <li><a class="collection-item" style="background-color: #f5f5f5" id="mname" href="">#{movie.title}</a></li>
+                    <li> <span>
+                        <a class="collection-item" style="background-color: #f5f5f5" id="mname"
+                           href="">#{movie.title}</a>
+                        <a><i class="material-icons">grade</i></a>
+                    </span>
+
+                    </li>
                 </ui:repeat>
             </ul>
-            <!--&lt;!&ndash;<div class="col s12" style="height: 230px; overflow:scroll;">&ndash;&gt;-->
-            <!--<div class="collection" id="movie" style="height: 250px; overflow:scroll;">-->
-                <!--<a class="collection-item" style="background-color: #f5f5f5"-->
-                   <!--href="#!">Liaoming Wang (liaoming.wang@stud.hs-hannover.de)</a>-->
 
-            <!--</div>-->
         </div>
     </h:form>
 
 
-    <!--<script type="text/javascript">-->
-    <!--function search(input) {-->
-    <!--var filter, a, i;-->
-    <!--filter = input.value.toUpperCase();-->
-    <!--a = document.getElementById("movie").getElementsByTagName('a');-->
-    <!--for (i = 0; i < a.length; i++) {-->
-    <!--a[i].style.display = (a[i].innerHTML.toUpperCase().indexOf(filter) > -1 ? '' : 'none');-->
-    <!--}-->
-    <!--}-->
-    <!--</script>-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"/>
+            src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js">
+    </script>
+    <script type="text/javascript" src="../js/app.js"/>
+
 </h:body>
 
 
