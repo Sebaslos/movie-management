@@ -1,10 +1,17 @@
 package beans;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
-public class Player {
+@ManagedBean(name = "player")
+@SessionScoped
+public class Player implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -12,6 +19,8 @@ public class Player {
 
 	@Column(nullable = false, unique = true)
 	private String name;
+
+//	private List<Movie> movies = new ArrayList<>();
 
 	public Long getId() {
 		return id;

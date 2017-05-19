@@ -1,6 +1,10 @@
 package action;
 
+import beans.Movie;
+import beans.Player;
 import beans.User;
+import service.MovieService;
+import service.PlayerService;
 import service.UserService;
 
 import javax.faces.bean.ManagedBean;
@@ -17,6 +21,34 @@ public class Navigator {
 
 		UserService userService = new UserService();
 		userService.add(user);
+
+		PlayerService playerService = new PlayerService();
+		MovieService movieService = new MovieService();
+
+		Player p1 = new Player();
+		p1.setName("sd");
+		playerService.add(p1);
+
+		Player p2 = new Player();
+		p2.setName("asd");
+		playerService.add(p2);
+
+		Movie movie = new Movie();
+		movie.setTitle("slol");
+		movie.setDirector("wac");
+		movie.setGenre("xiao");
+		movie.setYear(1344);
+		movie.addPlayer(p1);
+		movie.addPlayer(p2);
+		movieService.add(movie);
+
+		Movie movie1 = new Movie();
+		movie1.setTitle("asf");
+		movie1.setDirector("reh");
+		movie1.setGenre("jtr");
+		movie1.setYear(2017);
+		movie1.addPlayer(p1);
+		movieService.add(movie1);
 
 		return "";
 	}
