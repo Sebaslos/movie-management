@@ -2,13 +2,15 @@ package beans;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table
 @ManagedBean(name = "player")
-@SessionScoped
+//@SessionScoped
+@ViewScoped
 public class Player implements Serializable {
 
 	@Id

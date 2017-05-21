@@ -6,41 +6,79 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-<h:head>
-    <title>add new movie</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css"/>
-</h:head>
-
 <h:body>
-    <h2>Add a new movie</h2>
 
-    <h:form>
-        title: <h:inputText value="#{movie.title}"/> <br/>
-        director: <h:inputText value="#{movie.director}"/> <br/>
-        <!--players: <h:inputText /> <br/>-->
-        year: <h:inputText value="#{movie.year}"/> <br/>
-        genre: <h:inputText value="#{movie.genre}"/> <br/>
+    <ui:composition template="../templates/common.xhtml">
 
-        players:
-        <h:panelGroup id="pname">
-            <ui:repeat value="#{movie.players}" var="pl">
-                <li><h:outputText value="#{pl.name}"/></li>
-            </ui:repeat>
-            <br/>
+        <ui:define name="title">
+            <title>add new movie</title>
+        </ui:define>
 
-            add player: <h:inputText id="pn" value="#{player.name}"/>
-            <h:commandButton value="add player" action="#{movie.addPlayer(player.name)}">
-                <f:ajax execute="pn" render="pname"/>
-            </h:commandButton>
-        </h:panelGroup>
-        <br/>
-        <h:commandButton value="add" action="#{movie.addMovie}"/>
-    </h:form>
+        <ui:define name="content">
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"/>
-    <script type="text/javascript" src="../js/app.js"/>
+            <h3>Add a new movie</h3>
+
+            <h:form styleClass="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <h:inputText id="title" styleClass="validate" value="#{movie.title}"/>
+                        <label for="title">Title</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <h:inputText id="director" styleClass="validate" value="#{movie.director}"/>
+                        <label for="director">Director</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <h:inputText id="year" styleClass="validate" value="#{movie.year}"/>
+                        <label for="year">Year</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <h:inputText id="genre" styleClass="validate" value="#{movie.genre}"/>
+                        <label for="genre">Genre</label>
+                    </div>
+                </div>
+
+                <!--title: <h:inputText value="#{movie.title}"/> <br/>-->
+                <!--director: <h:inputText value="#{movie.director}"/> <br/>-->
+                <!--year: <h:inputText value="#{movie.year}"/> <br/>-->
+                <!--genre: <h:inputText value="#{movie.genre}"/> <br/>-->
+
+                <div class="row">
+                    <h:panelGroup id="pname">
+                        <div class="col s12">
+                            Enter Player name:
+                            <div class="input-field inline">
+                                <!--<input id="pn" type="email" class="validate"/>-->
+                                <h:inputText id="pn" styleClass="validate" value="#{player.name}"/>
+                                <label for="pn">Player</label>
+                            </div>
+
+                            <div style="display: none;">
+                                <h:commandButton styleClass="waves-effect waves-light btn" value="add player"
+                                                 action="#{movie.addPlayer(player.name)}">
+                                    <f:ajax execute="pn" render="pname"/>
+                                </h:commandButton>
+                            </div>
+                        </div>
+
+                        <div class="col s12">
+                            <ui:repeat value="#{movie.players}" var="pl">
+                                <!--<li><h:outputText value="#{pl.name}"/></li>-->
+                                <div class="chip">
+                                    <h:outputText value="#{pl.name}"/>
+                                </div>
+                            </ui:repeat>
+                        </div>
+                    </h:panelGroup>
+                </div>
+
+                <h:commandButton styleClass="btn waves-effect waves-light" value="add movie"
+                                 action="#{movie.addMovie}"/>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+
 </h:body>
 
 

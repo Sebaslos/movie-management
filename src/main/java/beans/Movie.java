@@ -5,6 +5,7 @@ import service.MovieService;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.event.ValueChangeEvent;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,7 +15,8 @@ import java.util.List;
 @Entity
 @Table
 @ManagedBean(name = "movie")
-@SessionScoped
+//@SessionScoped
+@ViewScoped
 public class Movie implements Serializable {
 
 	@Id
