@@ -29,20 +29,24 @@ public class User implements Serializable {
 	@Column(nullable = false)
 	private String password;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Movie> movies = new ArrayList<>();
 
 //	@Transient
 //	private String message;
 
 	public String login() {
-//		UserService service = new UserService();
-//		try {
-//			User user = service.authenticate(this.username, this.password);
-//		} catch (Exception e) {
-//			System.out.println("login error");
-//			return "error";
-//		}
+		UserService service = new UserService();
+		try {
+			User user = service.authenticate(this.username, this.password);
+			this.id = user.id;
+			this.username = user.username;
+			this.password = user.password;
+			this.movies = user.getMovies();
+		} catch (Exception e) {
+			System.out.println("login error");
+			return "error";
+		}
 		return "show";
 	}
 
@@ -50,6 +54,20 @@ public class User implements Serializable {
 		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 		ec.invalidateSession();
 		ec.redirect("/");
+	}
+
+	public boolean hasMovie(Movie movie) {
+		return this.movies.contains(movie);
+	}
+
+	public void toggleMovie(Movie movie) {
+		UserService userService = new UserService();
+		if (hasMovie(movie)) {
+			this.movies.remove(movie);
+		} else  {
+			this.movies.add(movie);
+		}
+		userService.update(this);
 	}
 
 	public Long getId() {

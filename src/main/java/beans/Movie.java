@@ -28,14 +28,14 @@ public class Movie implements Serializable {
 	private Long id;
 
 	@NotNull(message = "title can't be null")
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String title;
 
 	@NotNull(message = "director can't be null")
 	@Column(nullable = false)
 	private String director;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Player> players = new ArrayList<>();
 
 	@NotNull(message = "year can't be null")
@@ -80,7 +80,12 @@ public class Movie implements Serializable {
 	public void searchFromMovieDB(ValueChangeEvent evt) {
 		this.search = (String) evt.getNewValue();
 		MovieService movieService = new MovieService();
-		this.searchResult = movieService.searchMovie(this.search);
+
+		if (this.search == null || this.search.equals("")) {
+			this.searchResult = movieService.findAll();
+		} else {
+			this.searchResult = movieService.searchMovie(this.search);
+		}
 	}
 
 	public Long getId() {
@@ -149,5 +154,20 @@ public class Movie implements Serializable {
 
 	public void setSearchResult(List<Movie> searchResult) {
 		this.searchResult = searchResult;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Movie movie = (Movie) o;
+
+		return id.equals(movie.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return id.hashCode();
 	}
 }

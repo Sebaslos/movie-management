@@ -6,49 +6,98 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-<h:head>
-    <title>search new movie</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css"/>
-</h:head>
+<!--<h:head>-->
+<!--<title>search new movie</title>-->
+<!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>-->
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css"/>-->
+<!--</h:head>-->
 
 <h:body>
-    <h2>search a new movie</h2>
 
-    <h:form>
-        <div class="row">
-            <div class="input-field col s12">
-                Filter
-                <!--<h:inputText type="text" name="name" class="validate" autocomplete="off" onkeyup="search(this)"/>-->
-                <h:inputText value="#{movie.search}" onchange="submit"
-                             valueChangeListener="#{movie.searchFromMovieDB}"/>
-            </div>
+    <ui:composition template="../templates/common.xhtml">
 
-            <ul class="collection" id="movie" style="height: 250px; overflow:scroll;">
-                <li class="collection-item">
-                    <a style="background-color: #f5f5f5" id="tess" href="">rest</a>
-                    <a id="aic" class="secondary-content"><i id="te" class="material-icons">star</i></a>
-                </li>
-                <ui:repeat value="#{movie.searchResult}" var="movie">
-                    <li> <span>
+        <ui:define name="title">
+            <title>search movie</title>
+        </ui:define>
+
+        <ui:define name="content">
+
+            <h3>search movie</h3>
+
+            <h:form>
+                <div class="row">
+                    <div class="input-field col s12">
+                        Filter
+                        <!--<h:inputText type="text" name="name" class="validate" autocomplete="off" onkeyup="search(this)"/>-->
+                        <h:inputText value="#{movie.search}" onchange="submit"
+                                     valueChangeListener="#{movie.searchFromMovieDB}"/>
+
+                    <h:dataTable value="#{movie.searchResult}" var="movie" styleClass="striped">
+
+                        <h:column>
+                            <f:facet name="header">Title</f:facet>
+                            #{movie.title}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Director</f:facet>
+                            #{movie.director}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Year</f:facet>
+                            #{movie.year}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Genre</f:facet>
+                            #{movie.genre}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Players</f:facet>
+                            <ui:repeat value="#{movie.players}" var="player">
+                                #{player.name}
+                            </ui:repeat>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Collection</f:facet>
+                            <h:commandLink action="#{user.toggleMovie(movie)}">
+                                <i id="te" class="material-icons">#{user.hasMovie(movie)?'star':'star_border'}</i>
+                            </h:commandLink>
+                        </h:column>
+
+                    </h:dataTable>
+
+                    </div>
+<!--                    <ul class="collection" id="movie" style="height: 250px; overflow:scroll;">
+                        <li class="collection-item">
+                            <a style="background-color: #f5f5f5" id="tess" href="">rest</a>
+                            <a id="aic" class="secondary-content"><i id="te" class="material-icons">star</i></a>
+                        </li>
+                        <ui:repeat value="#{movie.searchResult}" var="movie">
+                            <li> <span>
                         <a class="collection-item" style="background-color: #f5f5f5" id="mname"
                            href="">#{movie.title}</a>
                         <a><i class="material-icons">grade</i></a>
                     </span>
 
-                    </li>
-                </ui:repeat>
-            </ul>
+                            </li>
+                        </ui:repeat>
+                    </ul>-->
 
-        </div>
-    </h:form>
+                </div>
+            </h:form>
 
+        </ui:define>
+    </ui:composition>
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js">
-    </script>
-    <script type="text/javascript" src="../js/app.js"/>
+    <!--<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
+    <!--<script type="text/javascript"-->
+    <!--src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js">-->
+    <!--</script>-->
+    <!--<script type="text/javascript" src="../js/app.js"/>-->
 
 </h:body>
 
