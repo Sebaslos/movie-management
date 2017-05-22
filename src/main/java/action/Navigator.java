@@ -16,8 +16,8 @@ public class Navigator {
 
 	public String init() {
 		User user = new User();
-		user.setUsername("wlm");
-		user.setPassword("lol");
+		user.setUsername("admin");
+		user.setPassword("admin");
 
 		User user1 = new User();
 		user1.setUsername("t");

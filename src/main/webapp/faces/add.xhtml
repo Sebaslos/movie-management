@@ -6,6 +6,10 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
+<f:metadata>
+    <f:event type="preRenderView" listener="#{user.isLogin}"/>
+</f:metadata>
+
 <h:body>
 
     <ui:composition template="../templates/common.xhtml">
@@ -19,10 +23,10 @@
             <h3>Add a new movie</h3>
 
             <div class="row">
-                <h:message for="title" styleClass="col s12 message" />
-                <h:message for="director" styleClass="col s12 message" />
-                <h:message for="year" styleClass="col s12 message" />
-                <h:message for="genre" styleClass="col s12 message" />
+                <h:message for="title" styleClass="col s12 message"/>
+                <h:message for="director" styleClass="col s12 message"/>
+                <h:message for="year" styleClass="col s12 message"/>
+                <h:message for="genre" styleClass="col s12 message"/>
             </div>
 
             <h:form styleClass="col s12">

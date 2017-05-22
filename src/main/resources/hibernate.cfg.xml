@@ -13,7 +13,7 @@
         <property name="format_sql">false</property>
 
         <!--<property name="hbm2ddl.auto">create-drop</property>-->
-        <property name="hbm2ddl.auto">create-drop</property>
+        <property name="hbm2ddl.auto">update</property>
         <property name="hibernate.cache.use_query_cache">false</property>
         <property name="hibernate.cache.use_second_level_cache">false</property>
 

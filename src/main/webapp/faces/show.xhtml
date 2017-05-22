@@ -6,6 +6,10 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
+<f:metadata>
+    <f:event type="preRenderView" listener="#{user.isLogin}"/>
+</f:metadata>
+
 <h:body>
 
     <ui:composition template="../templates/common.xhtml">
