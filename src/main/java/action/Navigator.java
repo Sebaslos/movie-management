@@ -37,7 +37,7 @@ public class Navigator {
 		movie.setTitle("slol");
 		movie.setDirector("wac");
 		movie.setGenre("xiao");
-		movie.setYear(1344);
+		movie.setYear(2015);
 		movie.addPlayer(p1);
 		movie.addPlayer(p2);
 		movieService.add(movie);

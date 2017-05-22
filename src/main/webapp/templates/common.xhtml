@@ -12,6 +12,7 @@
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css"/>
+    <link rel="stylesheet" href="../css/app.css"/>
 </h:head>
 
 <h:body>
@@ -21,7 +22,7 @@
             <ul class="right hide-on-med-and-down">
                 <!--<li><a href="#">Login</a></li>-->
                 <li>
-                    <h:link value="Login" rendered="#{user.username == null}"/>
+                    <h:link value="Login" outcome="" rendered="#{user.username == null}"/>
                 </li>
                 <li>
                     <h:link style="pointer-events: none;" value="hallo, #{user.username}" rendered="#{user.username != null}" />

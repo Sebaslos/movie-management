@@ -18,6 +18,13 @@
 
             <h3>Add a new movie</h3>
 
+            <div class="row">
+                <h:message for="title" styleClass="col s12 message" />
+                <h:message for="director" styleClass="col s12 message" />
+                <h:message for="year" styleClass="col s12 message" />
+                <h:message for="genre" styleClass="col s12 message" />
+            </div>
+
             <h:form styleClass="col s12">
                 <div class="row">
                     <div class="input-field col s6">
@@ -73,7 +80,7 @@
                 </div>
 
                 <h:commandButton styleClass="btn waves-effect waves-light" value="add movie"
-                                 action="#{movie.addMovie}"/>
+                                 action="#{movie.saveMovie}"/>
             </h:form>
 
         </ui:define>
