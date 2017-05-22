@@ -1,10 +1,12 @@
 package beans;
 
 
+import javafx.beans.DefaultProperty;
 import service.MovieService;
 import service.PlayerService;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ValueChangeEvent;
@@ -56,11 +58,16 @@ public class Movie implements Serializable {
 
 	public String saveMovie() {
 		PlayerService playerService = new PlayerService();
+		List<Player> plist = new ArrayList<>();
 		for (Player player : players) {
-			if (playerService.findByName(player.getName()) == null) {
-				playerService.add(player);
+			Player p = playerService.findByName(player.getName());
+			if (p == null) {
+				p = playerService.add(player);
 			}
+			plist.add(p);
 		}
+
+		this.setPlayers(plist);
 
 		MovieService movieService = new MovieService();
 		movieService.add(this);
@@ -80,10 +87,7 @@ public class Movie implements Serializable {
 	public void searchFromMovieDB(ValueChangeEvent evt) {
 		this.search = (String) evt.getNewValue();
 		MovieService movieService = new MovieService();
-
-		if (this.search == null || this.search.equals("")) {
-			this.searchResult = movieService.findAll();
-		} else {
+		if (this.search != null && !this.search.equals("")) {
 			this.searchResult = movieService.searchMovie(this.search);
 		}
 	}
@@ -149,6 +153,10 @@ public class Movie implements Serializable {
 	}
 
 	public List<Movie> getSearchResult() {
+		MovieService movieService = new MovieService();
+		if (this.search == null || this.search.equals("")) {
+			return(movieService.findAll());
+		}
 		return searchResult;
 	}
 

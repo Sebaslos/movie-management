@@ -6,34 +6,82 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-
-<h:head>
-    <title>Show</title>
-</h:head>
-
 <h:body>
-    <h2>Hallo, #{user.username}</h2>
 
-        title: <h:outputText value="#{movie.title}"/>
-        director: <h:outputText value="#{movie.director}"/> <br/>
-        year: <h:outputText value="#{movie.year}"/> <br/>
-        genre: <h:outputText value="#{movie.genre}"/> <br/>
+    <ui:composition template="../templates/common.xhtml">
 
-        <ui:repeat value="#{movie.players}" var="p">
-            <h:outputText value="#{p.name}"/>
-        </ui:repeat>
+        <ui:define name="title">
+            <title>show</title>
+        </ui:define>
 
-    <h:form>
-        <h:commandButton value="search" action="search"/>
-    </h:form>
+        <ui:define name="content">
 
-    <ui:repeat value="" var="">
+            <div class="row">
+                <h3 class="col s12">Filmsammlung</h3>
 
-    </ui:repeat>
+                <h:form>
+                    <h:commandButton styleClass="btn waves-effect waves-light right" value="search" action="search"/>
+                </h:form>
+            </div>
 
-    <h:form>
-        <h:commandButton value="add new movie" action="add"/>
-    </h:form>
+            <div class="row">
+                <div class="input-field col s12">
+                    <h:dataTable value="#{user.movies}" var="movie" styleClass="striped">
+
+                        <h:column>
+                            <f:facet name="header">Title</f:facet>
+                            #{movie.title}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Director</f:facet>
+                            #{movie.director}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Year</f:facet>
+                            #{movie.year}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Genre</f:facet>
+                            #{movie.genre}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Players</f:facet>
+                            <ui:repeat value="#{movie.players}" var="player">
+                                #{player.name}
+                            </ui:repeat>
+                        </h:column>
+
+                    </h:dataTable>
+                </div>
+            </div>
+
+            <!--title: <h:outputText value="#{movie.title}"/>-->
+            <!--director: <h:outputText value="#{movie.director}"/> <br/>-->
+            <!--year: <h:outputText value="#{movie.year}"/> <br/>-->
+            <!--genre: <h:outputText value="#{movie.genre}"/> <br/>-->
+
+            <!--<ui:repeat value="#{movie.players}" var="p">-->
+            <!--<h:outputText value="#{p.name}"/>-->
+            <!--</ui:repeat>-->
+
+            <!--<h:form>-->
+                <!--<h:commandButton styleClass="btn waves-effect waves-light" value="add new movie" action="add"/>-->
+            <!--</h:form>-->
+
+            <div class="fixed-action-btn">
+                <h:form>
+                    <h:commandLink styleClass="btn-floating btn-large blue" action="add">
+                        <i class="large material-icons">add</i>
+                    </h:commandLink>
+                </h:form>
+            </div>
+
+        </ui:define>
+    </ui:composition>
 
 </h:body>
 

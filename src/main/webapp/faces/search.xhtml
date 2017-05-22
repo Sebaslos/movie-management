@@ -6,11 +6,6 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-<!--<h:head>-->
-<!--<title>search new movie</title>-->
-<!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>-->
-<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css"/>-->
-<!--</h:head>-->
 
 <h:body>
 
@@ -62,7 +57,7 @@
                         </h:column>
 
                         <h:column>
-                            <f:facet name="header">Collection</f:facet>
+                            <f:facet name="header">Favorite</f:facet>
                             <h:commandLink action="#{user.toggleMovie(movie)}">
                                 <i id="te" class="material-icons">#{user.hasMovie(movie)?'star':'star_border'}</i>
                             </h:commandLink>
@@ -71,21 +66,6 @@
                     </h:dataTable>
 
                     </div>
-<!--                    <ul class="collection" id="movie" style="height: 250px; overflow:scroll;">
-                        <li class="collection-item">
-                            <a style="background-color: #f5f5f5" id="tess" href="">rest</a>
-                            <a id="aic" class="secondary-content"><i id="te" class="material-icons">star</i></a>
-                        </li>
-                        <ui:repeat value="#{movie.searchResult}" var="movie">
-                            <li> <span>
-                        <a class="collection-item" style="background-color: #f5f5f5" id="mname"
-                           href="">#{movie.title}</a>
-                        <a><i class="material-icons">grade</i></a>
-                    </span>
-
-                            </li>
-                        </ui:repeat>
-                    </ul>-->
 
                 </div>
             </h:form>
@@ -93,11 +73,6 @@
         </ui:define>
     </ui:composition>
 
-    <!--<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
-    <!--<script type="text/javascript"-->
-    <!--src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js">-->
-    <!--</script>-->
-    <!--<script type="text/javascript" src="../js/app.js"/>-->
 
 </h:body>
 

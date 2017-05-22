@@ -19,8 +19,13 @@ public class Navigator {
 		user.setUsername("wlm");
 		user.setPassword("lol");
 
+		User user1 = new User();
+		user1.setUsername("t");
+		user1.setPassword("t");
+
 		UserService userService = new UserService();
 		userService.add(user);
+		userService.add(user1);
 
 		PlayerService playerService = new PlayerService();
 		MovieService movieService = new MovieService();

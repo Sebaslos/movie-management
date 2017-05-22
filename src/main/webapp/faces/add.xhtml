@@ -72,7 +72,8 @@
                             <ui:repeat value="#{movie.players}" var="pl">
                                 <!--<li><h:outputText value="#{pl.name}"/></li>-->
                                 <div class="chip">
-                                    <h:outputText value="#{pl.name}"/>
+                                    #{pl.name}
+                                    <!--<i class="close material-icons">close</i>-->
                                 </div>
                             </ui:repeat>
                         </div>
