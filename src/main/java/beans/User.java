@@ -5,7 +5,10 @@ import service.UserService;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.persistence.*;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +44,12 @@ public class User implements Serializable {
 //			return "error";
 //		}
 		return "show";
+	}
+
+	public void logout() throws IOException {
+		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+		ec.invalidateSession();
+		ec.redirect("/");
 	}
 
 	public Long getId() {

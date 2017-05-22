@@ -22,13 +22,15 @@
             <ul class="right hide-on-med-and-down">
                 <!--<li><a href="#">Login</a></li>-->
                 <li>
-                    <h:link value="Login" outcome="" rendered="#{user.username == null}"/>
+                    <h:link value="Login" outcome="login" rendered="#{user.username == null}"/>
                 </li>
                 <li>
                     <h:link style="pointer-events: none;" value="hallo, #{user.username}" rendered="#{user.username != null}" />
                 </li>
                 <li>
-                    <h:link value="Logout" rendered="#{user.username != null}"/>
+                    <h:form>
+                        <h:commandLink value="Logout" action="#{user.logout}" rendered="#{user.username != null}"/>
+                    </h:form>
                 </li>
             </ul>
 
