@@ -10,6 +10,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -25,9 +26,11 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	@NotNull(message = "username can't be null")
 	@Column(nullable = false, unique = true)
 	private String username;
 
+	@NotNull(message = "password can't be null")
 	@Column(nullable = false)
 	private String password;
 
