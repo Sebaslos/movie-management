@@ -1,5 +1,5 @@
-# movie-management
-wt aufgabe: movie verwaltung
+# Movie-Management
+WT aufgabe: movie verwaltung
 
 ## Quick Start
 
