@@ -9,7 +9,6 @@ import java.io.Serializable;
 @Entity
 @Table
 @ManagedBean(name = "player")
-//@SessionScoped
 @ViewScoped
 public class Player implements Serializable {
 

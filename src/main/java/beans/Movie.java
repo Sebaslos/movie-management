@@ -1,13 +1,10 @@
 package beans;
 
 
-import javafx.beans.DefaultProperty;
 import service.MovieService;
 import service.PlayerService;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ValueChangeEvent;
 import javax.persistence.*;
@@ -21,7 +18,6 @@ import java.util.List;
 @Entity
 @Table
 @ManagedBean(name = "movie")
-//@SessionScoped
 @ViewScoped
 public class Movie implements Serializable {
 
